@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "value": "borusanADF"
+        },
+        "LS_Blob_Borusan_connectionString": {
+            "value": ""
+        },
+        "LS_SQL_Borusan_password": {
+            "value": ""
+        },
+        "AzureDatabricksDeltaLake1_accessToken": {
+            "value": ""
+        },
+        "AzureDatabricksDeltaLake2_accessToken": {
+            "value": ""
+        },
+        "DeltaLakeBorusan_accessToken": {
+            "value": ""
+        },
+        "LS_SQL_Borusan_properties_typeProperties_server": {
+            "value": "borusansqlserver.database.windows.net"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_database": {
+            "value": "borusanSalesDB"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_userName": {
+            "value": "sqladmin"
+        }
+    }
+}

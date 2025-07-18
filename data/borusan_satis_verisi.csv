@@ -1,0 +1,91 @@
+Tarih,Bayi Adı,Şehir,Marka,Satış Adedi,Hedef Satış
+2025-07-01,Borusan Oto İstinye,İstanbul,BMW,0,4
+2025-07-01,Borusan Oto İstinye,İstanbul,Land Rover,10,12
+2025-07-01,Borusan Oto Avcılar,İstanbul,Jaguar,1,5
+2025-07-01,Borusan Oto Ataşehir,İstanbul,MINI,8,13
+2025-07-01,Borusan Oto Ankara,Ankara,Jaguar,10,12
+2025-07-01,Borusan Oto Bursa,Bursa,BMW,1,4
+2025-07-01,Borusan Oto Adana,Adana,MINI,0,5
+2025-07-01,Borusan Oto Antalya,Antalya,BMW,8,10
+2025-07-01,Borusan Oto Gaziantep,Gaziantep,BMW,3,7
+2025-07-01,Borusan Oto Samsun,Samsun,Land Rover,10,12
+2025-07-02,Borusan Oto İstinye,İstanbul,Land Rover,1,2
+2025-07-02,Borusan Oto Avcılar,İstanbul,BMW,9,11
+2025-07-02,Borusan Oto Avcılar,İstanbul,Jaguar,3,8
+2025-07-02,Borusan Oto Ataşehir,İstanbul,BMW,4,9
+2025-07-02,Borusan Oto Ataşehir,İstanbul,MINI,8,10
+2025-07-02,Borusan Oto Ankara,Ankara,Land Rover,5,9
+2025-07-02,Borusan Oto Ankara,Ankara,Jaguar,7,8
+2025-07-02,Borusan Oto Bursa,Bursa,BMW,3,7
+2025-07-02,Borusan Oto Adana,Adana,MINI,6,9
+2025-07-02,Borusan Oto Adana,Adana,Jaguar,10,13
+2025-07-02,Borusan Oto Antalya,Antalya,Land Rover,9,13
+2025-07-02,Borusan Oto Gaziantep,Gaziantep,Jaguar,10,14
+2025-07-02,Borusan Oto Samsun,Samsun,BMW,4,8
+2025-07-03,Borusan Oto İstinye,İstanbul,Jaguar,5,6
+2025-07-03,Borusan Oto Avcılar,İstanbul,MINI,8,13
+2025-07-03,Borusan Oto Ataşehir,İstanbul,BMW,5,7
+2025-07-03,Borusan Oto Ankara,Ankara,Land Rover,3,5
+2025-07-03,Borusan Oto Ankara,Ankara,BMW,5,10
+2025-07-03,Borusan Oto Bursa,Bursa,Jaguar,8,11
+2025-07-03,Borusan Oto Bursa,Bursa,Land Rover,2,6
+2025-07-03,Borusan Oto Adana,Adana,BMW,4,9
+2025-07-03,Borusan Oto Adana,Adana,Jaguar,5,9
+2025-07-03,Borusan Oto Antalya,Antalya,Land Rover,8,11
+2025-07-03,Borusan Oto Gaziantep,Gaziantep,MINI,10,13
+2025-07-03,Borusan Oto Samsun,Samsun,Jaguar,9,11
+2025-07-03,Borusan Oto Samsun,Samsun,MINI,0,1
+2025-07-04,Borusan Oto İstinye,İstanbul,Jaguar,0,2
+2025-07-04,Borusan Oto İstinye,İstanbul,MINI,7,9
+2025-07-04,Borusan Oto Avcılar,İstanbul,BMW,1,3
+2025-07-04,Borusan Oto Avcılar,İstanbul,MINI,9,14
+2025-07-04,Borusan Oto Ataşehir,İstanbul,MINI,0,3
+2025-07-04,Borusan Oto Ankara,Ankara,Jaguar,5,10
+2025-07-04,Borusan Oto Bursa,Bursa,MINI,7,12
+2025-07-04,Borusan Oto Adana,Adana,Land Rover,7,11
+2025-07-04,Borusan Oto Adana,Adana,BMW,2,6
+2025-07-04,Borusan Oto Antalya,Antalya,Land Rover,6,9
+2025-07-04,Borusan Oto Antalya,Antalya,Jaguar,2,6
+2025-07-04,Borusan Oto Gaziantep,Gaziantep,Jaguar,2,6
+2025-07-04,Borusan Oto Gaziantep,Gaziantep,Land Rover,7,12
+2025-07-04,Borusan Oto Samsun,Samsun,MINI,3,7
+2025-07-04,Borusan Oto Samsun,Samsun,Jaguar,6,11
+2025-07-05,Borusan Oto İstinye,İstanbul,MINI,9,14
+2025-07-05,Borusan Oto Avcılar,İstanbul,MINI,9,11
+2025-07-05,Borusan Oto Ataşehir,İstanbul,Jaguar,3,5
+2025-07-05,Borusan Oto Ankara,Ankara,BMW,1,4
+2025-07-05,Borusan Oto Ankara,Ankara,Land Rover,7,12
+2025-07-05,Borusan Oto Bursa,Bursa,Jaguar,0,5
+2025-07-05,Borusan Oto Adana,Adana,MINI,7,12
+2025-07-05,Borusan Oto Antalya,Antalya,MINI,4,9
+2025-07-05,Borusan Oto Gaziantep,Gaziantep,BMW,2,5
+2025-07-05,Borusan Oto Gaziantep,Gaziantep,Land Rover,3,4
+2025-07-05,Borusan Oto Samsun,Samsun,BMW,5,9
+2025-07-05,Borusan Oto Samsun,Samsun,Land Rover,9,12
+2025-07-06,Borusan Oto İstinye,İstanbul,Jaguar,2,3
+2025-07-06,Borusan Oto Avcılar,İstanbul,BMW,1,5
+2025-07-06,Borusan Oto Ataşehir,İstanbul,Jaguar,1,3
+2025-07-06,Borusan Oto Ataşehir,İstanbul,Land Rover,7,12
+2025-07-06,Borusan Oto Ankara,Ankara,MINI,1,4
+2025-07-06,Borusan Oto Bursa,Bursa,MINI,5,8
+2025-07-06,Borusan Oto Adana,Adana,MINI,2,3
+2025-07-06,Borusan Oto Antalya,Antalya,Jaguar,4,9
+2025-07-06,Borusan Oto Antalya,Antalya,MINI,2,7
+2025-07-06,Borusan Oto Gaziantep,Gaziantep,Jaguar,9,14
+2025-07-06,Borusan Oto Gaziantep,Gaziantep,Land Rover,7,8
+2025-07-06,Borusan Oto Samsun,Samsun,MINI,5,10
+2025-07-06,Borusan Oto Samsun,Samsun,Jaguar,7,11
+2025-07-07,Borusan Oto İstinye,İstanbul,MINI,5,7
+2025-07-07,Borusan Oto İstinye,İstanbul,Jaguar,4,5
+2025-07-07,Borusan Oto Avcılar,İstanbul,Jaguar,6,9
+2025-07-07,Borusan Oto Avcılar,İstanbul,Land Rover,3,4
+2025-07-07,Borusan Oto Ataşehir,İstanbul,Land Rover,9,13
+2025-07-07,Borusan Oto Ataşehir,İstanbul,BMW,5,7
+2025-07-07,Borusan Oto Ankara,Ankara,Jaguar,2,5
+2025-07-07,Borusan Oto Bursa,Bursa,Jaguar,9,12
+2025-07-07,Borusan Oto Bursa,Bursa,Land Rover,0,1
+2025-07-07,Borusan Oto Adana,Adana,Land Rover,8,11
+2025-07-07,Borusan Oto Adana,Adana,Jaguar,9,12
+2025-07-07,Borusan Oto Antalya,Antalya,BMW,5,9
+2025-07-07,Borusan Oto Gaziantep,Gaziantep,Land Rover,6,10
+2025-07-07,Borusan Oto Samsun,Samsun,BMW,5,8

@@ -1,0 +1,415 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory adı",
+            "defaultValue": "borusanADF"
+        },
+        "LS_Blob_Borusan_connectionString": {
+            "type": "secureString",
+            "metadata": "'LS_Blob_Borusan' öğesine ait 'connectionString' için güvenli dize"
+        },
+        "LS_SQL_Borusan_password": {
+            "type": "secureString",
+            "metadata": "'LS_SQL_Borusan' öğesine ait 'password' için güvenli dize"
+        },
+        "AzureDatabricksDeltaLake1_accessToken": {
+            "type": "secureString",
+            "metadata": "'AzureDatabricksDeltaLake1' öğesine ait 'accessToken' için güvenli dize"
+        },
+        "AzureDatabricksDeltaLake2_accessToken": {
+            "type": "secureString",
+            "metadata": "'AzureDatabricksDeltaLake2' öğesine ait 'accessToken' için güvenli dize"
+        },
+        "DeltaLakeBorusan_accessToken": {
+            "type": "secureString",
+            "metadata": "'DeltaLakeBorusan' öğesine ait 'accessToken' için güvenli dize"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "borusansqlserver.database.windows.net"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "borusanSalesDB"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_userName": {
+            "type": "string",
+            "defaultValue": "sqladmin"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('factoryName'), '/DS_Borusan_SQL')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "LS_SQL_Borusan",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "AzureSqlTable",
+                "schema": [
+                    {
+                        "name": "tarih",
+                        "type": "date"
+                    },
+                    {
+                        "name": "bayi_adi",
+                        "type": "nvarchar"
+                    },
+                    {
+                        "name": "sehir",
+                        "type": "nvarchar"
+                    },
+                    {
+                        "name": "marka",
+                        "type": "nvarchar"
+                    },
+                    {
+                        "name": "satis_adedi",
+                        "type": "int",
+                        "precision": 10
+                    },
+                    {
+                        "name": "hedef_satis",
+                        "type": "int",
+                        "precision": 10
+                    }
+                ],
+                "typeProperties": {
+                    "schema": "dbo",
+                    "table": "satislar"
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/LS_SQL_Borusan')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/DS_Borusan_CSV')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "LS_Blob_Borusan",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "DelimitedText",
+                "typeProperties": {
+                    "location": {
+                        "type": "AzureBlobStorageLocation",
+                        "fileName": "borusan_satis_verisi.csv",
+                        "container": "input"
+                    },
+                    "columnDelimiter": ",",
+                    "escapeChar": "\\",
+                    "firstRowAsHeader": true,
+                    "quoteChar": "\""
+                },
+                "schema": [
+                    {
+                        "name": "Tarih",
+                        "type": "String"
+                    },
+                    {
+                        "name": "Bayi Adı",
+                        "type": "String"
+                    },
+                    {
+                        "name": "Şehir",
+                        "type": "String"
+                    },
+                    {
+                        "name": "Marka",
+                        "type": "String"
+                    },
+                    {
+                        "name": "Satış Adedi",
+                        "type": "String"
+                    },
+                    {
+                        "name": "Hedef Satış",
+                        "type": "String"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/LS_Blob_Borusan')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/pipeline_borusan')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "Copy Borusan Sales",
+                        "type": "Copy",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "0.12:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "source": {
+                                "type": "DelimitedTextSource",
+                                "storeSettings": {
+                                    "type": "AzureBlobStorageReadSettings",
+                                    "recursive": true,
+                                    "enablePartitionDiscovery": false
+                                },
+                                "formatSettings": {
+                                    "type": "DelimitedTextReadSettings"
+                                }
+                            },
+                            "sink": {
+                                "type": "AzureSqlSink",
+                                "writeBehavior": "insert",
+                                "sqlWriterUseTableLock": false
+                            },
+                            "enableStaging": false,
+                            "translator": {
+                                "type": "TabularTranslator",
+                                "mappings": [
+                                    {
+                                        "source": {
+                                            "name": "Tarih",
+                                            "type": "String",
+                                            "physicalType": "String"
+                                        },
+                                        "sink": {
+                                            "name": "tarih",
+                                            "type": "DateTime",
+                                            "physicalType": "date"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "Bayi Adı",
+                                            "type": "String",
+                                            "physicalType": "String"
+                                        },
+                                        "sink": {
+                                            "name": "bayi_adi",
+                                            "type": "String",
+                                            "physicalType": "nvarchar"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "Şehir",
+                                            "type": "String",
+                                            "physicalType": "String"
+                                        },
+                                        "sink": {
+                                            "name": "sehir",
+                                            "type": "String",
+                                            "physicalType": "nvarchar"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "Marka",
+                                            "type": "String",
+                                            "physicalType": "String"
+                                        },
+                                        "sink": {
+                                            "name": "marka",
+                                            "type": "String",
+                                            "physicalType": "nvarchar"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "Satış Adedi",
+                                            "type": "String",
+                                            "physicalType": "String"
+                                        },
+                                        "sink": {
+                                            "name": "satis_adedi",
+                                            "type": "Int32",
+                                            "physicalType": "int"
+                                        }
+                                    },
+                                    {
+                                        "source": {
+                                            "name": "Hedef Satış",
+                                            "type": "String",
+                                            "physicalType": "String"
+                                        },
+                                        "sink": {
+                                            "name": "hedef_satis",
+                                            "type": "Int32",
+                                            "physicalType": "int"
+                                        }
+                                    }
+                                ],
+                                "typeConversion": true,
+                                "typeConversionSettings": {
+                                    "allowDataTruncation": true,
+                                    "treatBooleanAsNumber": false
+                                }
+                            }
+                        },
+                        "inputs": [
+                            {
+                                "referenceName": "DS_Borusan_CSV",
+                                "type": "DatasetReference",
+                                "parameters": {}
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "referenceName": "DS_Borusan_SQL",
+                                "type": "DatasetReference",
+                                "parameters": {}
+                            }
+                        ]
+                    }
+                ],
+                "policy": {
+                    "elapsedTimeMetric": {}
+                },
+                "annotations": [],
+                "lastPublishTime": "2025-07-18T02:08:43Z"
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/datasets/DS_Borusan_CSV')]",
+                "[concat(variables('factoryId'), '/datasets/DS_Borusan_SQL')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/daily_borusan_trigger')]",
+            "type": "Microsoft.DataFactory/factories/triggers",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "runtimeState": "Started",
+                "pipelines": [
+                    {
+                        "pipelineReference": {
+                            "referenceName": "pipeline_borusan",
+                            "type": "PipelineReference"
+                        },
+                        "parameters": {}
+                    }
+                ],
+                "type": "ScheduleTrigger",
+                "typeProperties": {
+                    "recurrence": {
+                        "frequency": "Day",
+                        "interval": 1,
+                        "startTime": "2025-07-17T10:00:00",
+                        "timeZone": "Turkey Standard Time",
+                        "schedule": {}
+                    }
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/pipelines/pipeline_borusan')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/LS_Blob_Borusan')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureBlobStorage",
+                "typeProperties": {
+                    "connectionString": "[parameters('LS_Blob_Borusan_connectionString')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/LS_SQL_Borusan')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureSqlDatabase",
+                "typeProperties": {
+                    "server": "[parameters('LS_SQL_Borusan_properties_typeProperties_server')]",
+                    "database": "[parameters('LS_SQL_Borusan_properties_typeProperties_database')]",
+                    "encrypt": "mandatory",
+                    "trustServerCertificate": false,
+                    "authenticationType": "SQL",
+                    "userName": "[parameters('LS_SQL_Borusan_properties_typeProperties_userName')]",
+                    "password": {
+                        "type": "SecureString",
+                        "value": "[parameters('LS_SQL_Borusan_password')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/AzureDatabricksDeltaLake1')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureDatabricksDeltaLake",
+                "typeProperties": {
+                    "domain": "https://adb-964590790838097.17.azuredatabricks.net",
+                    "clusterId": "0718-033733-8ckr78un",
+                    "accessToken": {
+                        "type": "SecureString",
+                        "value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/AzureDatabricksDeltaLake2')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureDatabricksDeltaLake",
+                "typeProperties": {
+                    "domain": "https://adb-964590790838097.17.azuredatabricks.net",
+                    "clusterId": "0718-033733-8ckr78un",
+                    "accessToken": {
+                        "type": "SecureString",
+                        "value": "[parameters('AzureDatabricksDeltaLake2_accessToken')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/DeltaLakeBorusan')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureDatabricksDeltaLake",
+                "typeProperties": {
+                    "domain": "https://adb-964590790838097.17.azuredatabricks.net",
+                    "clusterId": "0718-033733-8ckr78un",
+                    "accessToken": {
+                        "type": "SecureString",
+                        "value": "[parameters('DeltaLakeBorusan_accessToken')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}

@@ -1,0 +1,98 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory adı",
+            "defaultValue": "borusanADF"
+        },
+        "LS_Blob_Borusan_connectionString": {
+            "type": "secureString",
+            "metadata": "'LS_Blob_Borusan' öğesine ait 'connectionString' için güvenli dize"
+        },
+        "LS_SQL_Borusan_password": {
+            "type": "secureString",
+            "metadata": "'LS_SQL_Borusan' öğesine ait 'password' için güvenli dize"
+        },
+        "AzureDatabricksDeltaLake1_accessToken": {
+            "type": "secureString",
+            "metadata": "'AzureDatabricksDeltaLake1' öğesine ait 'accessToken' için güvenli dize"
+        },
+        "AzureDatabricksDeltaLake2_accessToken": {
+            "type": "secureString",
+            "metadata": "'AzureDatabricksDeltaLake2' öğesine ait 'accessToken' için güvenli dize"
+        },
+        "DeltaLakeBorusan_accessToken": {
+            "type": "secureString",
+            "metadata": "'DeltaLakeBorusan' öğesine ait 'accessToken' için güvenli dize"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "borusansqlserver.database.windows.net"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "borusanSalesDB"
+        },
+        "LS_SQL_Borusan_properties_typeProperties_userName": {
+            "type": "string",
+            "defaultValue": "sqladmin"
+        },
+        "containerUri": {
+            "type": "string",
+            "metadata": "Bağlı ARM şablonlarını içeren depolama hesabına yönelik URI"
+        },
+        "containerSasToken": {
+            "type": "string",
+            "metadata": "Bağlı ARM şablonlarını içeren depolama hesabına yönelik SAS belirteci"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "borusanADF_ArmTemplate_0",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-03-01",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "factoryName": {
+                        "value": "[parameters('factoryName')]"
+                    },
+                    "LS_Blob_Borusan_connectionString": {
+                        "value": "[parameters('LS_Blob_Borusan_connectionString')]"
+                    },
+                    "LS_SQL_Borusan_password": {
+                        "value": "[parameters('LS_SQL_Borusan_password')]"
+                    },
+                    "AzureDatabricksDeltaLake1_accessToken": {
+                        "value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
+                    },
+                    "AzureDatabricksDeltaLake2_accessToken": {
+                        "value": "[parameters('AzureDatabricksDeltaLake2_accessToken')]"
+                    },
+                    "DeltaLakeBorusan_accessToken": {
+                        "value": "[parameters('DeltaLakeBorusan_accessToken')]"
+                    },
+                    "LS_SQL_Borusan_properties_typeProperties_server": {
+                        "value": "[parameters('LS_SQL_Borusan_properties_typeProperties_server')]"
+                    },
+                    "LS_SQL_Borusan_properties_typeProperties_database": {
+                        "value": "[parameters('LS_SQL_Borusan_properties_typeProperties_database')]"
+                    },
+                    "LS_SQL_Borusan_properties_typeProperties_userName": {
+                        "value": "[parameters('LS_SQL_Borusan_properties_typeProperties_userName')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
