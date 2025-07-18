@@ -30,7 +30,8 @@ amaçlandı.
 - Azure Data Factory kullanılarak bir ETL pipeline oluşturuldu.
 - Bu süreç bir **trigger** ile zamanlanarak otomatik hale getirildi.
 
-![Uploading image.png…]()
+
+![Uploading de9b8cfd-d317-4aa4-bcf1-f709e0e35904.png…]()
 
 
 ### 2. SQL Server Üzerinde İlk Analizler
