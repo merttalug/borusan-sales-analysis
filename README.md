@@ -68,5 +68,3 @@ Görsel çıktı `.pbix` dosyasında yer almaktadır.
 - Bazı markalar (örneğin Jaguar) satış adetlerinde öne çıkmaktadır.
 - Genel satış başarım oranı yaklaşık **%55** olarak hesaplanmıştır.
 
-## 📁 Klasör Yapısı
-
