@@ -31,7 +31,7 @@ amaçlandı.
 - Bu süreç bir **trigger** ile zamanlanarak otomatik hale getirildi.
 
 
-![Uploading de9b8cfd-d317-4aa4-bcf1-f709e0e35904.png…]()
+![Borusan Veri Akış Diyagramı](./de9b8cfd-d317-4aa4-bcf1-f709e0e35904.png)
 
 
 ### 2. SQL Server Üzerinde İlk Analizler
