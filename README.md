@@ -30,13 +30,6 @@ amaçlandı.
 - Azure Data Factory kullanılarak bir ETL pipeline oluşturuldu.
 - Bu süreç bir **trigger** ile zamanlanarak otomatik hale getirildi.
 
-graph LR
-    A[📁 Kaynak<br/>DS_Borusan_CSV<br/>Azure Blob Storage] --> B[⚙️ Copy Activity<br/>Copy Borusan Sales<br/>Veri Dönüşüm]
-    B --> C[🎯 Hedef<br/>DS_Borusan_SQL<br/>Azure SQL Database]
-    
-    style A fill:#43cea2,stroke:#185a9d,stroke-width:2px,color:#fff
-    style B fill:#fa709a,stroke:#fee140,stroke-width:2px,color:#333
-    style C fill:#a8edea,stroke:#fed6e3,stroke-width:2px,color:#333
 
 ![Borusan Veri Akış Diyagramı](./de9b8cfd-d317-4aa4-bcf1-f709e0e35904.png)
 
