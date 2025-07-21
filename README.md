@@ -21,6 +21,9 @@ amaçlandı.
 - **Azure Databricks (PySpark):** Verilerin işlenmesi ve analiz edilmesi.
 - **Power BI:** Verilerin görselleştirilmesi ve interaktif raporların oluşturulması.
 - **GitHub:** Proje versiyon kontrolü ve paylaşımı.
+  
+## Veri Akış Diyagramı
+![Borusan Veri Akış Diyagramı](./de9b8cfd-d317-4aa4-bcf1-f709e0e35904.png)
 
 ## 🛠️ Süreç Adımları
 
@@ -30,9 +33,35 @@ amaçlandı.
 - Azure Data Factory kullanılarak bir ETL pipeline oluşturuldu.
 - Bu süreç bir **trigger** ile zamanlanarak otomatik hale getirildi.
 
+#### 📊 ADF Pipeline Veri Akışı
 
-![Borusan Veri Akış Diyagramı](./de9b8cfd-d317-4aa4-bcf1-f709e0e35904.png)
+![ADF Pipeline](./images/adf_pipeline.png)
 
+
+
+#### ADF Aktiviteleri Özeti
+
+| 🔧 Alan           | 📝 Değer                              |
+|------------------|----------------------------------------|
+| Pipeline Adı     | `pipeline_borusan`                    |
+| Aktivite Türü    | `Copy Activity`                       |
+| Kaynak Dataset   | `DS_Borusan_CSV (DelimitedText)`      |
+| Hedef Dataset    | `DS_Borusan_SQL (Azure SQL)`          |
+| Timeout          | `12 saat`                             |
+| Retry Sayısı     | `0`                                   |
+
+
+
+#### Veri Şeması ve Dönüşümler
+
+| 📁 Kaynak Kolon     | 🎯 Hedef Kolon     | 🔄 Tür         |
+|---------------------|--------------------|----------------|
+| Tarih               | tarih               | String → DateTime |
+| Bayi Adı            | bayi_adi            | String → String   |
+| Şehir               | sehir               | String → String   |
+| Marka               | marka               | String → String   |
+| Satış Adedi         | satis_adedi         | String → Int32    |
+| Hedef Satış         | hedef_satis         | String → Int32    |
 
 ### 2. SQL Server Üzerinde İlk Analizler
 
