@@ -35,7 +35,7 @@ amaçlandı.
 
 #### 📊 ADF Pipeline Veri Akışı
 
-![ADF Pipeline](./images/adf_pipeline.png)
+![ADF Pipeline](./adf_pipeline.png)
 
 
 
